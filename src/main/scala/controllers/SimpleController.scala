@@ -16,7 +16,7 @@
 
 package controllers
 
-import com.greenfossil.thorium.{Redirect, Request}
+import com.greenfossil.thorium.{*, given}
 import com.linecorp.armeria.server.annotation.{Get, Param}
 
 object SimpleController:
@@ -26,7 +26,7 @@ object SimpleController:
 
   @Get("/redirect")
   def redirect(using request: Request) =
-    Redirect(sayHello("User"))
+    Redirect(sayHello("User").endpoint)
 
   @Get("regex:^/plusOne/(?<number>\\d+)")
   def plusOne(@Param number: Int)(using request: Request) =
