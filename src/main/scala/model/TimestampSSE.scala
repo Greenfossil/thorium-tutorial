@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-import com.greenfossil.thorium.{Action, Server}
-import controllers.{SSEController, FormController, SimpleController}
+package model
 
-@main def start: Unit =
-  Server()
-    .addHttpService("/", Action(request => "Welcome to Thorium!"))
-    .addServices(FormController, SimpleController, SSEController)
-    .addDocService("/docs")
-    .start()
+import com.linecorp.armeria.common.sse.ServerSentEvent
+
+import java.time.{Duration, LocalDateTime}
+
+case class TimestampSSE(dt: LocalDateTime, event: String) extends ServerSentEvent {
+  override def retry(): Duration = null
+
+  override val id: String = scala.util.Random.nextLong.toHexString
+
+  override def comment(): String = null
+
+  override def data(): String = dt.toString
+}
