@@ -10,6 +10,6 @@ lazy val root = project
   )
 
 libraryDependencies ++= Seq(
-  "com.greenfossil" %% "thorium" % "0.5.0" withSources(),
+  "com.greenfossil" %% "thorium" % "0.6.0" withSources(),
   "org.scalameta" %% "munit" % "0.7.29" % Test
 )

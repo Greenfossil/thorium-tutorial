@@ -26,7 +26,7 @@ object SimpleController:
 
   @Get("/redirect")
   def redirect(using request: Request) =
-    Redirect(sayHello("User").endpoint)
+    Redirect(sayHello("User"))
 
   @Get("regex:^/plusOne/(?<number>\\d+)")
   def plusOne(@Param number: Int)(using request: Request) =
