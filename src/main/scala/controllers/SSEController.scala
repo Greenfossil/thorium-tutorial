@@ -31,7 +31,7 @@ object SSEController {
   val flux = sink.asFlux()
 
   @Get("/sse/subscribe")
-  def subscribeToSSE(using request: Request) = {
+  def subscribeToSSE(using request: Request) = 
     ServerSentEvents
       .fromPublisher(
         ResponseHeaders.of(200),
@@ -44,14 +44,12 @@ object SSEController {
           )
         }
       )
-  }
 
   @Get("/sse/sendEvent")
-  def sendEvent(using request: Request) = {
+  def sendEvent(using request: Request) = 
     val event = TimestampSSE(LocalDateTime.now(), "user-initiated")
     sink.tryEmitNext(event)
     s"Event Id: ${event.id}"
-  }
 
 
 }

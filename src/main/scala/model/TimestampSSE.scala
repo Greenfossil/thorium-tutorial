@@ -20,7 +20,7 @@ import com.linecorp.armeria.common.sse.ServerSentEvent
 
 import java.time.{Duration, LocalDateTime}
 
-case class TimestampSSE(dt: LocalDateTime, event: String) extends ServerSentEvent {
+case class TimestampSSE(dt: LocalDateTime, event: String) extends ServerSentEvent:
   override def retry(): Duration = null
 
   override val id: String = scala.util.Random.nextLong.toHexString
@@ -28,4 +28,3 @@ case class TimestampSSE(dt: LocalDateTime, event: String) extends ServerSentEven
   override def comment(): String = null
 
   override def data(): String = dt.toString
-}
