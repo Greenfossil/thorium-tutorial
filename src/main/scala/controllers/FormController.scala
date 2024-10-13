@@ -39,7 +39,7 @@ object FormController:
   @Post("/updateUser")
   def updateUser(using request: Request) =
     form.bindFromRequest().fold(
-      errorForm => {
+      errorForm => 
         val response = Json.obj(
           "errors" -> errorForm.errors.map { error =>
             Json.obj(
@@ -49,11 +49,10 @@ object FormController:
           }
         )
         BadRequest(response)
-      },
-      data => {
+      ,
+      data => 
         User.updateUser.tupled(data)
         Ok("Updated user!")
-      }
     )
 
   //curl -X POST http://localhost:8080/deleteUser
